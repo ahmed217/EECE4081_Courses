@@ -7,7 +7,7 @@ from flask import redirect
 # install using,  pip3 install sqlalchemy flask-sqlalchemy 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.schema import PrimaryKeyConstraint
-from _operator import concat
+
 
 # this is the database connection string or link 
 # brokenlaptops.db is the name of database and it will be created inside 
