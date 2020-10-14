@@ -93,16 +93,11 @@ def update(course_id):
     
     course = Course.query.get(course_id)
     if request.form:
-        newdepartment = request.form.get("department")
-        newtitle = request.form.get("title")
-        newnumber = request.form.get("number")
-        newsection = request.form.get("section")
-        newdescription = request.form.get("description")
-        course.department = newdepartment
-        course.title = newtitle
-        course.number = newnumber
-        course.section = newsection
-        course.description = newdescription
+        course.department = request.form.get("department")
+        course.title = request.form.get("title")
+        course.number = request.form.get("number")
+        course.section = request.form.get("section")
+        course.description = request.form.get("description")
         db.session.commit()
         
         return redirect('/', code = 302)
