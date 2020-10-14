@@ -26,7 +26,32 @@ db = SQLAlchemy(app)
 
 @app.route('/', methods = ['GET','POST'])
 def homepage():
-    return render_template('homepage.html')
+    course = Course.query.all() 
+    return render_template("homepage.html", course=course)
+
+# added individual routes for each course header
+
+@app.route('/bio')
+def bio():
+    return render_template("bio.html")
+
+@app.route('/civ')
+def civ():
+    return render_template("civ.html")
+
+@app.route('/eece')
+def eece():
+    return render_template("eece.html")
+
+@app.route('/mech')
+def mech():
+    return render_template("mech.html")
+
+@app.route('/tech')
+def tech():
+    return render_template("tech.html")
+
+
 @app.route('/init_db')
 def init_db():
     db.drop_all()
@@ -87,12 +112,12 @@ def update(course_id):
 
 
 class Course(db.Model):
-    department = db.Column(db.String(4), primary_key = True)
+    department = db.Column(db.String(4), nullable = False)
     title = db.Column(db.String(40), nullable = False)
     number = db.Column(db.Integer, nullable = False)
     section = db.Column(db.Integer, nullable = False)
     description = db.Column(db.String(400), nullable = True)
-    id = department + number + section
+    id = db.Column(db.Integer, primary_key=True)
     
 if __name__ == '__main__':
     app.run(debug=True)    
