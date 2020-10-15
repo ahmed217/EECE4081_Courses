@@ -35,18 +35,6 @@
   </nav>
 
 
-<!-- <nav class="navbar sticky-top navbar-light bg-dark justify-content-between">
-  <div id="navbarNav">
-    <ul class="navbar-nav mr-auto">
-        <h1 class="text" >Made by Georgie, Greg, and Jon </h1>
-       <a class="btn btn-primary" href="/create">Add a course!</a>
-      <input class="form-control mr-sm-2" id="myInput" type="text" placeholder="Filter..."
-             style="width:70%; margin-right:auto;">
-      <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create{{ course.id }}" >Add a course!</button>
-    </ul>
-  </div>
-</nav> -->
-
   <div class="modal" id="create{{ course.id }}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -56,7 +44,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form method="post">
+        <form method="post" action="/create">
           <div class="modal-body">
             <div class="form-group">
               <label>Department</label>
@@ -80,11 +68,11 @@
             </div>
             </p>
           </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Create</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
         </form>
-        <div class="modal-footer">
-          <a class="btn btn-success" href="/create/{{ course.id }}">Create</a>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-        </div>
       </div>
     </div>
   </div>
@@ -119,10 +107,52 @@
 		<td>{{ course.section }}</td>
 		<td>
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#more{{ course.id }}" >More Info...</button>
-          <a class="btn btn-primary" href="/update/{{ course.id }}">Update</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update{{ course.id }}" >Update</button>
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ course.id }}" >Remove</button>
 		</td>
 	</tr>
+
+    <div class="modal" id="update{{ course.id }}" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create Course</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="post" action="/update/{{ course.id }}">
+            <div class="modal-body">
+              <div class="form-group">
+                <label>Department</label>
+                <input type="text" name="department" class="form-control" placeholder="EECE">
+              </div>
+              <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" class="form-control" placeholder="Professional Development">
+              </div>
+              <div class="form-group">
+                <label>Course Number</label>
+                <input type="number" name="number" class="form-control" placeholder="4279">
+              </div>
+              <div class="form-group">
+                <label>Section</label>
+                <input type="number" name="section" class="form-control" placeholder="001">
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" name="description" class="form-control" placeholder="IDK CHANGE THIS">
+              </div>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success">Update</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
 	<div class="modal" id="delete{{ course.id }}" tabindex="-1" role="dialog">

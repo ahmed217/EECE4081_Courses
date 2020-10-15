@@ -31,7 +31,7 @@ def test():
 # Function---homepage
 @app.route('/', methods = ['GET','POST'])
 def homepage():
-    course = Course.query.all() 
+    course = Course.query.all()
     return render_template("homepage.html", course=course)
 
 # Functions---CRUD
