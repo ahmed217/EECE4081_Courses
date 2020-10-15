@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
+
   	<style>
 		h1 {text-align: center;}
 		p {text-align: center;}
 		div {text-align: center;}
 		 #heading { color: #FFFFFF; }
 	</style>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,37 +16,35 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Update Course Information </title>
-
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
+
   <style>
 .content {
-  max-width: 500px;
   margin: auto;
+    background: rgba(255,255,255,1);
 }
 </style>
+
 	<body style="background-color:black;">
 	<div class="content">
   <h1>{{title}}</h1>
   
-    
-    
-    
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
   <form method="POST" action="/update/{{course.id}}">
-<input name="Course Department " type="text" value = {{course.department}}>
-<input name="Course Number" type="text" value = {{course.number}}>
-<input name="Course Title" type="text" value = {{course.title}}>
-<input name="Course Section" type="text" value = {{course.section}}>
-<input name="Course Description" type="text" value = {{course.description}}>
+<input name="department" type="text" value = {{course.department}}>
+<input name="number" type="text" value = {{course.number}}>
+<input name="title" type="text" value = {{course.title}}>
+<input name="section" type="text" value = {{course.section}}>
+<input name="description" type="text" value = {{course.description}}>
 <input type="submit" value="Update">
 </form>
   </div>
   </body>
 </html>
+
+
