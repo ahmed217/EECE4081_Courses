@@ -33,6 +33,7 @@ def homepage():
 
 @app.route('/bio')
 def bio():
+    course = Course.query.all()
     return render_template("bio.html")
 
 @app.route('/civ')
@@ -98,6 +99,7 @@ def update(course_id):
         newnumber = request.form.get("number")
         newsection = request.form.get("section")
         newdescription = request.form.get("description")
+        newsection = str(newsection).zfill(3)
         course.department = newdepartment
         course.title = newtitle
         course.number = newnumber
@@ -120,5 +122,4 @@ class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
 if __name__ == '__main__':
-    app.run(debug=True)    
-    
+    app.run(debug=True)
