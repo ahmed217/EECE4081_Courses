@@ -27,8 +27,7 @@
   <nav class="navbar navbar-light justify-content-between"
        style="background-color: #343537">
     <h1 class="navbar-brand text-light">Engineering Courses</h1>
-    <a class="btn btn-primary" href="/create">Add a course!</a>
-    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#create{{ course.id }}" >Add a course!</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create{{ course.id }}" >Add a course!</button>
     <form class="form-inline">
       <input class="form-control mr-sm-2" id="myInput" type="search" placeholder="Filter..." aria-label="Search">
     </form>
@@ -60,7 +59,7 @@
             </div>
             <div class="form-group">
               <label>Section</label>
-              <input type="number" name="section" class="form-control" placeholder="001" required>
+              <input type="text" name="section" class="form-control" placeholder="001" required>
             </div>
             <div class="form-group">
               <label>Description</label>

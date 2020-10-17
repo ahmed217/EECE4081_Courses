@@ -55,19 +55,23 @@ def update(course_id):
     
     course = Course.query.get(course_id)
     if request.form:
-        newdepartment = request.form.get("department")
-        newtitle = request.form.get("title")
-        newnumber = request.form.get("number")
-        newsection = request.form.get("section")
-        newdescription = request.form.get("description")
-        newsection = str(newsection).zfill(3)
-        course.department = newdepartment
-        course.title = newtitle
-        course.number = newnumber
-        course.section = newsection
-        course.description = newdescription
+        if request.form.get("department") != "":
+            newdepartment = request.form.get("department")
+            course.department = newdepartment
+        if request.form.get("title") != "":
+            newtitle = request.form.get("title")
+            course.title = newtitle
+        if request.form.get("number") != "":
+            newnumber = request.form.get("number")
+            course.number = newnumber
+        if request.form.get("section") != "":
+            newsection = request.form.get("section")
+            course.section = newsection
+            newsection = str(newsection).zfill(3)
+        if request.form.get("section") != "":
+            newdescription = request.form.get("description")
+            course.description = newdescription
         db.session.commit()
-        
         return redirect('/', code = 302)
     return render_template("update.html", course = course, title = 'Update a course')
 
