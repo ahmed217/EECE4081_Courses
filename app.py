@@ -4,6 +4,8 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask import jsonify
+import json
 
 # database creation
 database = "sqlite:///courselist.db"
@@ -83,6 +85,13 @@ def delete(course_id):
     course = Course.query.all()
     return redirect("/", code = 302)
 
+@app.route('/json')
+def createJson():
+    allCourses = Course.query.all();
+    json_data = jsonify(json_list = [i.serialize() for i in allCourses]);
+    return json_data;
+
+
 # Course object
 class Course(db.Model):
     department = db.Column(db.String(4), nullable = False)
@@ -92,5 +101,15 @@ class Course(db.Model):
     description = db.Column(db.String(400), nullable = True)
     id = db.Column(db.Integer, primary_key=True)
     
+    def serialize(self):
+        return{
+            'id' : self.id,
+            'title' : self.title,
+            'number' : self.number,
+            'section' : self.section,
+            'description' : self.description,
+            'department' : self.department
+            }
+
 if __name__ == '__main__':
     app.run(debug=True)
