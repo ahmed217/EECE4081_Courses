@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Some kinda JS; filter doesn't work unless these are at the top ¯\_(ツ)_/¯ -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,210 +17,227 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <style>
-      body {
-        background-image: url('static/homepage_background.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
+        body {
+            background-image: url('static/homepage_background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
-  </head>
+</head>
 
-  <nav class="navbar navbar-light justify-content-between"
-       style="background-color: #343537">
+<nav class="navbar navbar-light justify-content-between"
+     style="background-color: #343537">
     <h1 class="navbar-brand text-light">Engineering Courses</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create{{ course.id }}" >Add a course!</button>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" id="myInput" type="search" placeholder="Filter..." aria-label="Search">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create{{ course.id }}">Add a
+        course!
+    </button>
+    <a class="btn btn-secondary" href = "/about">About</a>    <form class="form-inline">
+        <input class="form-control mr-sm-2" id="myInput" type="search" placeholder="Filter..." aria-label="Search">
     </form>
-  </nav>
+</nav>
 
 
-  <div class="modal" id="create{{ course.id }}" tabindex="-1" role="dialog">
+<div class="modal" id="create{{ course.id }}" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Create Course</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form method="post" action="/create">
-          <div class="modal-body">
-            <div class="form-group">
-              <label>Department</label>
-              <input type="text" name="department" class="form-control" placeholder="EECE" required>
-            </div>
-            <div class="form-group">
-              <label>Title</label>
-              <input type="text" name="title" class="form-control" placeholder="Professional Development" required>
-            </div>
-            <div class="form-group">
-              <label>Course Number</label>
-              <input type="number" name="number" class="form-control" placeholder="4279" required>
-            </div>
-            <div class="form-group">
-              <label>Section</label>
-              <input type="text" name="section" class="form-control" placeholder="001" required>
-            </div>
-            <div class="form-group">
-              <label>Description</label>
-              <input type="text" name="description" class="form-control" placeholder="IDK CHANGE THIS">
-            </div>
-            </p>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Create</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div>
-<table class="table table-striped table-dark"
-       style="background-color:rgba(64, 64, 64, 0.85); width:70%; margin-left:auto; margin-right:auto; border-radius:25px;">
-    <thead>
-    <colgroup>
-      <col span="1" style="width:10%;">
-      <col span="1" style="width:25%;">
-      <col span="1" style="width:15%;">
-      <col span="1" style="width:10%;">
-      <col span="1" style="width:40%;">
-    </colgroup>
-
-    <tr style="text-align: center;">
-      <th scope="col">Department</th>
-      <th scope="col">Title</th>
-      <th scope="col">Course Number</th>
-      <th scope="col">Section</th>
-      <th scope="col">Action</th>
-    </tr>
-    </thead>
-
-<tbody id="myTable">
-    {% for course in course %}
-	<tr style="text-align: center;">
-		<td>{{ course.department }}</td>
-		<td>{{ course.title }}</td>
-		<td>{{ course.number }}</td>
-		<td>{{ course.section }}</td>
-		<td>
-		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#more{{ course.id }}" >More Info...</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update{{ course.id }}" >Update</button>
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ course.id }}" >Remove</button>
-		</td>
-	</tr>
-
-    <div class="modal" id="update{{ course.id }}" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Create Course</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form method="post" action="/update/{{ course.id }}">
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Department</label>
-                <input type="text" name="department" class="form-control" placeholder="EECE">
-              </div>
-              <div class="form-group">
-                <label>Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Professional Development">
-              </div>
-              <div class="form-group">
-                <label>Course Number</label>
-                <input type="number" name="number" class="form-control" placeholder="4279">
-              </div>
-              <div class="form-group">
-                <label>Section</label>
-                <input type="number" name="section" class="form-control" placeholder="001">
-              </div>
-              <div class="form-group">
-                <label>Description</label>
-                <input type="text" name="description" class="form-control" placeholder="IDK CHANGE THIS">
-              </div>
-              </p>
+            <div class="modal-header">
+                <h5 class="modal-title">Create Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success">Update</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            </div>
-          </form>
+            <form method="post" action="/create">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Department</label>
+                        <input type="text" name="department" class="form-control" placeholder="EECE" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Professional Development"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Course Number</label>
+                        <input type="number" name="number" class="form-control" placeholder="4279" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Section</label>
+                        <input type="text" name="section" class="form-control" placeholder="001" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" class="form-control" style="color: black">{{ course.description }}</textarea>
+                    </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Create</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
-      </div>
     </div>
-
-
-	<div class="modal" id="delete{{ course.id }}" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Delete Course</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this course?</p>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-danger" href="/delete/{{ course.id }}">Yes</a>
-        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
-      </div>
-    </div>
-  </div>
 </div>
 
-	<div class="modal" id="more{{ course.id }}" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Course Information</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Course Name: {{ course.title }} 
-        <br>Course Description: {{ course.description }}
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-	
-	
-{% endfor %}
-<tbody>
-	
-  </table>
+<div>
+    <table class="table table-striped table-dark"
+           style="background-color:rgba(64, 64, 64, 0.85); width:70%; margin-left:auto; margin-right:auto; border-radius:25px;">
+        <thead>
+        <colgroup>
+            <col span="1" style="width:10%;">
+            <col span="1" style="width:25%;">
+            <col span="1" style="width:15%;">
+            <col span="1" style="width:10%;">
+            <col span="1" style="width:40%;">
+        </colgroup>
+
+        <tr style="text-align: center; background-color: transparent;">
+            <th scope="col">Department</th>
+            <th scope="col">Title</th>
+            <th scope="col">Course Number</th>
+            <th scope="col">Section</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tbody id="myTable">
+        {% for course in course %}
+        <tr style="text-align: center;">
+            <td>{{ course.department }}</td>
+            <td>{{ course.title }}</td>
+            <td>{{ course.number }}</td>
+            <td>{{ '%03d' % (course.section) }}</td>
+            <td>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#more{{ course.id }}">
+                    More Info...
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update{{ course.id }}">
+                    Update
+                </button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ course.id }}">
+                    Remove
+                </button>
+            </td>
+        </tr>
+
+        <div class="modal" id="update{{ course.id }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" action="/update/{{ course.id }}">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Department</label>
+                                <input type="text" name="department" class="form-control" placeholder="EECE" value="{{ course.department }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control"
+                                       placeholder="Professional Development" value="{{ course.title }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Course Number</label>
+                                <input type="number" name="number" class="form-control" placeholder="4279"
+                                       value="{{ course.number }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Section</label>
+                                <input type="number" name="section" class="form-control" placeholder="001" value="{{ course.section }}">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea name="description" class="form-control" style="color: black">{{ course.description }}</textarea>
+                            </div>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="delete{{ course.id }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this course?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-danger" href="/delete/{{ course.id }}">Yes</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="more{{ course.id }}" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Course Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Course Name: {{ course.title }}
+                            <br>Course Description: {{ course.description }}
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+        <tbody>
+
+    </table>
 </div>
 
-  <script>
-    $(document).ready(function(){
-      $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) >  -1)
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         });
-      });
     });
-  </script>
+</script>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
 </html>
 
 
