@@ -91,6 +91,11 @@ def createJson():
     json_data = jsonify(json_list = [i.serialize() for i in allCourses]);
     return json_data;
 
+@app.route('/about')
+def about():
+    
+    return render_template("about.html", title = 'About the Creators')
+
 
 # Course object
 class Course(db.Model):
