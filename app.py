@@ -99,7 +99,7 @@ def createJson():
 class Course(db.Model):
     department = db.Column(db.String(4), nullable = False)
     title = db.Column(db.String(40), nullable = False)
-    number = db.Column(db.Integer, nullable = False)
+    number = db.Column(db.String(9), nullable = False)
     section = db.Column(db.Integer, nullable = False)
     description = db.Column(db.String(400), nullable = True)
     id = db.Column(db.Integer, primary_key=True)
